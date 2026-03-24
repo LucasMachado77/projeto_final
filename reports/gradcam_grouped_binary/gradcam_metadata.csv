@@ -1,0 +1,5 @@
+image_path,true_label,predicted_label,output_file
+C:\Projetos\projeto_final\Projeto Final - AI para Análise de Imagens\Data\Data_all\Moderate Dementia\OAS1_0351_MR1_mpr-2_155.jpg,Demented,Demented,mei_imagens_medicas_2025\reports\gradcam_grouped_binary\Demented_sample01_pred_Demented.png
+C:\Projetos\projeto_final\Projeto Final - AI para Análise de Imagens\Data\Data_all\Mild Dementia\OAS1_0073_MR1_mpr-1_133.jpg,Demented,Demented,mei_imagens_medicas_2025\reports\gradcam_grouped_binary\Demented_sample02_pred_Demented.png
+C:\Projetos\projeto_final\Projeto Final - AI para Análise de Imagens\Data\Data_all\Non Demented\OAS1_0065_MR1_mpr-3_143.jpg,Non Demented,Demented,mei_imagens_medicas_2025\reports\gradcam_grouped_binary\Non_Demented_sample01_pred_Demented.png
+C:\Projetos\projeto_final\Projeto Final - AI para Análise de Imagens\Data\Data_all\Non Demented\OAS1_0037_MR1_mpr-3_118.jpg,Non Demented,Non Demented,mei_imagens_medicas_2025\reports\gradcam_grouped_binary\Non_Demented_sample02_pred_Non_Demented.png

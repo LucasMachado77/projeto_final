@@ -1,0 +1,33 @@
+{
+  "Mild Dementia": {
+    "precision": 0.9854304635761589,
+    "recall": 0.9906790945406125,
+    "f1-score": 0.9880478087649402,
+    "support": 751.0
+  },
+  "Moderate Dementia": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 73.0
+  },
+  "Non Demented": {
+    "precision": 0.9959420289855072,
+    "recall": 0.993637941006362,
+    "f1-score": 0.9947886508396062,
+    "support": 1729.0
+  },
+  "accuracy": 0.9929494712103408,
+  "macro avg": {
+    "precision": 0.9937908308538886,
+    "recall": 0.9947723451823248,
+    "f1-score": 0.9942788198681821,
+    "support": 2553.0
+  },
+  "weighted avg": {
+    "precision": 0.9929659405646837,
+    "recall": 0.9929494712103408,
+    "f1-score": 0.9929547519326867,
+    "support": 2553.0
+  }
+}

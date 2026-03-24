@@ -1,0 +1,11 @@
+{
+  "device": "cpu",
+  "epochs": 1,
+  "batch_size": 32,
+  "image_size": 224,
+  "learning_rate": 0.001,
+  "freeze_backbone": true,
+  "best_val_accuracy": 0.7610654132393263,
+  "test_accuracy": 0.7677242459851156,
+  "test_loss": 0.6994132141108799
+}
