@@ -11,6 +11,7 @@ from PIL import Image
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 from torch import nn
 from torch.optim import Adam
+from torch.optim.lr_scheduler import ReduceLROnPlateau
 from torch.utils.data import DataLoader, Dataset
 from torchvision import models, transforms
 from torchvision.models import ResNet18_Weights
@@ -86,7 +87,60 @@ def parse_args() -> argparse.Namespace:
         '--learning-rate',
         type=float,
         default=1e-3,
-        help='Taxa de aprendizado do otimizador Adam.',
+        help='Taxa de aprendizado inicial do Adam.',
+    )
+    parser.add_argument(
+        '--weight-decay',
+        type=float,
+        default=1e-4,
+        help='L2 no Adam (regularização; reduz overfitting). Use 0 para desligar.',
+    )
+    parser.add_argument(
+        '--lr-scheduler-patience',
+        type=int,
+        default=2,
+        help='ReduceLROnPlateau: épocas sem melhorar val_loss antes de multiplicar LR por --lr-factor.',
+    )
+    parser.add_argument(
+        '--lr-factor',
+        type=float,
+        default=0.5,
+        help='Fator multiplicativo do scheduler quando há estagnação (val_loss).',
+    )
+    parser.add_argument(
+        '--lr-min',
+        type=float,
+        default=1e-6,
+        help='LR mínimo do scheduler.',
+    )
+    parser.add_argument(
+        '--early-stopping-patience',
+        type=int,
+        default=8,
+        help=(
+            'Paragem antecipada: épocas sem melhoria na métrica --best-by (0 = desativa; percorre todas).'
+        ),
+    )
+    parser.add_argument(
+        '--best-by',
+        choices=('val_loss', 'val_accuracy'),
+        default='val_loss',
+        help=(
+            'Critério para guardar o melhor checkpoint: val_loss costuma generalizar melhor que val_accuracy '
+            'quando o treino já está muito alto (overfitting).'
+        ),
+    )
+    parser.add_argument(
+        '--min-delta',
+        type=float,
+        default=1e-4,
+        help='Melhoria mínima em val_loss ou val_accuracy para contar como progresso (early stopping / best).',
+    )
+    parser.add_argument(
+        '--grad-clip-norm',
+        type=float,
+        default=1.0,
+        help='clip_grad_norm_ global (0 = desliga). Estabiliza quando val_loss explode.',
     )
     parser.add_argument(
         '--freeze-backbone',
@@ -131,6 +185,8 @@ def get_transforms(image_size: int) -> tuple[transforms.Compose, transforms.Comp
             transforms.Resize((image_size, image_size)),
             transforms.RandomHorizontalFlip(p=0.5),
             transforms.RandomRotation(degrees=10),
+            # Variação de cor suave — extra regularização sem distorcer anatomia forte.
+            transforms.ColorJitter(brightness=0.12, contrast=0.12, saturation=0.08, hue=0.02),
             transforms.ToTensor(),
             transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
         ],
@@ -206,6 +262,7 @@ def train_one_epoch(
     criterion: nn.Module,
     optimizer: torch.optim.Optimizer,
     device: torch.device,
+    grad_clip_norm: float,
 ) -> tuple[float, float]:
     # Executa uma época de treino acumulando loss e acurácia.
     model.train()
@@ -221,6 +278,8 @@ def train_one_epoch(
         logits = model(images)
         loss = criterion(logits, labels)
         loss.backward()
+        if grad_clip_norm > 0:
+            nn.utils.clip_grad_norm_(model.parameters(), max_norm=grad_clip_norm)
         optimizer.step()
 
         running_loss += float(loss.item()) * images.size(0)
@@ -266,7 +325,7 @@ def evaluate(
 def save_outputs(
     output_dir: Path,
     history_rows: list[dict[str, float]],
-    metrics: dict[str, float],
+    metrics: dict[str, object],
     confusion_df: pd.DataFrame,
     classification_report_dict: dict[str, object],
 ) -> None:
@@ -317,20 +376,35 @@ def main() -> None:
 
     # Treina apenas parâmetros com requires_grad=True (útil quando backbone está congelado).
     trainable_parameters = [parameter for parameter in model.parameters() if parameter.requires_grad]
-    optimizer = Adam(trainable_parameters, lr=args.learning_rate)
+    optimizer = Adam(
+        trainable_parameters,
+        lr=args.learning_rate,
+        weight_decay=args.weight_decay,
+    )
+    scheduler = ReduceLROnPlateau(
+        optimizer,
+        mode='min',
+        factor=args.lr_factor,
+        patience=args.lr_scheduler_patience,
+        min_lr=args.lr_min,
+    )
 
-    best_val_accuracy = -1.0
+    best_val_loss_ckpt = float('inf')
+    best_val_accuracy_ckpt = -1.0
     best_state_dict = None
+    best_epoch = 0
+    stale_epochs = 0
     history_rows: list[dict[str, float]] = []
 
     for epoch in range(1, args.epochs + 1):
-        print(f'\nÉpoca {epoch}/{args.epochs}')
+        print(f'\nÉpoca {epoch}/{args.epochs} | lr={optimizer.param_groups[0]["lr"]:.2e}')
         train_loss, train_accuracy = train_one_epoch(
             model=model,
             dataloader=train_loader,
             criterion=criterion,
             optimizer=optimizer,
             device=device,
+            grad_clip_norm=args.grad_clip_norm,
         )
         val_loss, val_accuracy, _, _ = evaluate(
             model=model,
@@ -339,9 +413,26 @@ def main() -> None:
             device=device,
         )
 
+        scheduler.step(val_loss)
+
+        if args.best_by == 'val_loss':
+            improved = val_loss < best_val_loss_ckpt - args.min_delta
+        else:
+            improved = val_accuracy > best_val_accuracy_ckpt + args.min_delta
+
+        if improved:
+            stale_epochs = 0
+            best_epoch = epoch
+            best_val_loss_ckpt = val_loss
+            best_val_accuracy_ckpt = val_accuracy
+            best_state_dict = {key: value.detach().cpu().clone() for key, value in model.state_dict().items()}
+        else:
+            stale_epochs += 1
+
         history_rows.append(
             {
                 'epoch': float(epoch),
+                'lr': float(optimizer.param_groups[0]['lr']),
                 'train_loss': float(train_loss),
                 'train_accuracy': float(train_accuracy),
                 'val_loss': float(val_loss),
@@ -350,13 +441,14 @@ def main() -> None:
         )
         print(
             f'train_loss={train_loss:.4f} | train_acc={train_accuracy:.4f} | '
-            f'val_loss={val_loss:.4f} | val_acc={val_accuracy:.4f}',
+            f'val_loss={val_loss:.4f} | val_acc={val_accuracy:.4f} | '
+            f'checkpoint(ep {best_epoch}): val_loss={best_val_loss_ckpt:.4f} val_acc={best_val_accuracy_ckpt:.4f} | '
+            f'sem melhoria={stale_epochs}',
         )
 
-        # Guarda o melhor estado por acurácia de validação.
-        if val_accuracy > best_val_accuracy:
-            best_val_accuracy = val_accuracy
-            best_state_dict = {key: value.detach().cpu().clone() for key, value in model.state_dict().items()}
+        if args.early_stopping_patience > 0 and stale_epochs >= args.early_stopping_patience:
+            print(f'\nEarly stopping: sem melhoria em {args.early_stopping_patience} épocas.')
+            break
 
     if best_state_dict is None:
         raise RuntimeError('Não foi possível salvar o melhor estado do modelo.')
@@ -387,12 +479,20 @@ def main() -> None:
 
     metrics = {
         'device': str(device),
-        'epochs': int(args.epochs),
+        'epochs_planned': int(args.epochs),
+        'epochs_run': int(len(history_rows)),
         'batch_size': int(args.batch_size),
         'image_size': int(args.image_size),
         'learning_rate': float(args.learning_rate),
+        'weight_decay': float(args.weight_decay),
         'freeze_backbone': bool(args.freeze_backbone),
-        'best_val_accuracy': float(best_val_accuracy),
+        'best_by': str(args.best_by),
+        'best_epoch': int(best_epoch),
+        'best_val_accuracy': float(best_val_accuracy_ckpt),
+        'best_val_loss': float(best_val_loss_ckpt),
+        'early_stopping_patience': int(args.early_stopping_patience),
+        'lr_scheduler_patience': int(args.lr_scheduler_patience),
+        'grad_clip_norm': float(args.grad_clip_norm),
         'test_accuracy': float(test_accuracy),
         'test_loss': float(test_loss),
     }
@@ -406,7 +506,7 @@ def main() -> None:
     )
 
     print(f'\nModelo salvo em: {model_path.resolve()}')
-    print(f'Best Val Accuracy: {best_val_accuracy:.4f}')
+    print(f'Melhor checkpoint (época {best_epoch}, por {args.best_by}): val_acc={best_val_accuracy_ckpt:.4f} val_loss={best_val_loss_ckpt:.4f}')
     print(f'Test Accuracy: {test_accuracy:.4f}')
 
 
