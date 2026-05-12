@@ -21,8 +21,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         '--split-csv',
         type=Path,
-        default=Path('reports_adni/split_assignments.csv'),
-        help='Arquivo CSV gerado no passo 02.',
+        default=Path('reports_adni/split_assignments_grouped_binary.csv'),
+        help='CSV do passo 02c (labels binárias; após 02b + 02c no fluxo ADNI).',
     )
     parser.add_argument(
         '--image-size',
@@ -45,7 +45,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         '--output-dir',
         type=Path,
-        default=Path('reports_adni/baseline_ml'),
+        default=Path('reports_adni/baseline_ml_grouped_binary'),
         help='Pasta para salvar métricas e matriz de confusão.',
     )
     return parser.parse_args()

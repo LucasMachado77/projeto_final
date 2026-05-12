@@ -7,6 +7,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import random
 import re
 from pathlib import Path
 from typing import Any, Sequence
@@ -463,6 +464,38 @@ def parse_args() -> argparse.Namespace:
             'Recomendado quando o CSV é coorte completa mas só parte dos volumes foi baixada (LONI).'
         ),
     )
+    parser.add_argument(
+        '--balance-output',
+        choices=('none', 'downsample'),
+        default='none',
+        help=(
+            'Após --skip-missing-dicom (recomendado): iguala contagens por pasta de classe à menor, '
+            'antes de gerar PNG (ImageFolder ~50/50 em nº de imagens; descarta excesso na maioria).'
+        ),
+    )
+    parser.add_argument(
+        '--max-rows-per-subject',
+        type=int,
+        default=0,
+        help=(
+            'Se > 0, antes de --balance-output limita quantas séries por subject_id entram (amostra aleatória). '
+            'Reduz domínio de poucos doentes com muitas imagens na classe majoritária.'
+        ),
+    )
+    parser.add_argument(
+        '--seed',
+        type=int,
+        default=42,
+        help='Semente para amostragem (--balance-output, --max-rows-per-subject).',
+    )
+    parser.add_argument(
+        '--clean-output-classes',
+        action='store_true',
+        help=(
+            'Antes de gerar PNG, apaga *.png em output_dir/Non Demented e Demented (refazer dataset '
+            'sem misturar com uma corrida anterior).'
+        ),
+    )
     return parser.parse_args()
 
 
@@ -740,6 +773,49 @@ def _write_merge_stats(
     stats_path.write_text('\n'.join(lines) + '\n', encoding='utf-8')
 
 
+def _append_step00_prepare_notes(stats_path: Path, notes: list[str]) -> None:
+    # Regista no ficheiro de estatísticas os filtros aplicados após o merge (reprodutível).
+    if not notes:
+        return
+    block = '\n---\nFiltros pós-merge nesta execução do step_00:\n' + '\n'.join(notes) + '\n'
+    if stats_path.is_file():
+        prev = stats_path.read_text(encoding='utf-8')
+        stats_path.write_text(prev + block, encoding='utf-8')
+    else:
+        stats_path.parent.mkdir(parents=True, exist_ok=True)
+        stats_path.write_text(block.lstrip('\n'), encoding='utf-8')
+
+
+def _cap_rows_per_subject_merged(merged: pd.DataFrame, max_per_subject: int, seed: int) -> pd.DataFrame:
+    # Limita quantas linhas (image_id) por paciente entram na preparação dos PNG.
+    rng = random.Random(seed)
+    chunks: list[pd.DataFrame] = []
+    for _, group in merged.groupby('subject_id', sort=False):
+        if len(group) <= max_per_subject:
+            chunks.append(group)
+            continue
+        positions = rng.sample(range(len(group)), k=max_per_subject)
+        chunks.append(group.iloc[sorted(positions)])
+    return pd.concat(chunks, ignore_index=True)
+
+
+def _balance_folder_labels_downsample(merged: pd.DataFrame, seed: int) -> pd.DataFrame:
+    # Iguala nº de linhas entre folder_label (Demented / Non Demented) à classe menor.
+    col = 'folder_label'
+    counts = merged[col].value_counts()
+    if len(counts) < 2:
+        return merged
+    target_n = int(counts.min())
+    parts: list[pd.DataFrame] = []
+    for label in counts.index:
+        g = merged[merged[col] == label]
+        if len(g) <= target_n:
+            parts.append(g)
+        else:
+            parts.append(g.sample(n=target_n, random_state=seed, replace=False))
+    return pd.concat(parts, ignore_index=True)
+
+
 def main() -> None:
     args = parse_args()
     # Precedência: argumentos CLI > variáveis de ambiente > config_adni.local.json > deteção automática.
@@ -799,8 +875,33 @@ def main() -> None:
         merged = merged[id_str.isin(dicom_index.keys())].copy()
         print(f'--skip-missing-dicom: {before} -> {len(merged)} linhas (só com volume no disco).')
 
+    run_notes: list[str] = []
+    if args.max_rows_per_subject > 0:
+        before = len(merged)
+        merged = _cap_rows_per_subject_merged(merged, args.max_rows_per_subject, args.seed)
+        line = f'max-rows-per-subject={args.max_rows_per_subject}: {before} -> {len(merged)} linhas.'
+        print(line)
+        run_notes.append(line)
+    if args.balance_output == 'downsample':
+        before_ct = merged['folder_label'].value_counts().to_dict()
+        merged = _balance_folder_labels_downsample(merged, args.seed)
+        after_ct = merged['folder_label'].value_counts().to_dict()
+        line = f'balance-output=downsample: {before_ct} -> {after_ct} | {len(merged)} linhas no loop PNG.'
+        print(line)
+        run_notes.append(line)
+    if run_notes:
+        _append_step00_prepare_notes(args.merge_stats_txt, run_notes)
+
     out_non = args.output_dir / 'Non Demented'
     out_dem = args.output_dir / 'Demented'
+    if args.clean_output_classes:
+        # Evita misturar PNGs de uma execução anterior com contagens ou filtros diferentes.
+        for sub in (out_non, out_dem):
+            if sub.is_dir():
+                png_list = [p for p in sub.glob('*.png') if p.is_file()]
+                for p in png_list:
+                    p.unlink()
+                print(f'--clean-output-classes: {len(png_list)} .png removidos em {sub}.')
     out_non.mkdir(parents=True, exist_ok=True)
     out_dem.mkdir(parents=True, exist_ok=True)
 

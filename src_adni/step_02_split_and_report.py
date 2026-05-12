@@ -14,7 +14,10 @@ VALID_IMAGE_EXTENSIONS = {'.jpg', '.jpeg', '.png', '.bmp', '.tif', '.tiff'}
 def parse_args() -> argparse.Namespace:
     # Lê parâmetros de execução para deixar o script reutilizável em diferentes cenários.
     parser = argparse.ArgumentParser(
-        description='Gera split estratificado (train/val/test) e relatório em CSV.',
+        description=(
+            'Gera split estratificado (train/val/test) por imagem (não por paciente). '
+            'No ADNI use step_02b + step_02c para evitar vazamento entre splits.'
+        ),
     )
     parser.add_argument(
         '--dataset-dir',

@@ -60,7 +60,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         '--output-dir',
         type=Path,
-        default=Path('reports_adni/vit_transfer_learning'),
+        default=Path('reports_adni/vit_transfer_learning_grouped_binary'),
         help='Pasta de saída para histórico, métricas e modelo.',
     )
     parser.add_argument(

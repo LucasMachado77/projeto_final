@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import random
 import re
 from pathlib import Path
 
@@ -56,6 +57,24 @@ def parse_args() -> argparse.Namespace:
         default=42,
         help='Semente para reprodutibilidade.',
     )
+    parser.add_argument(
+        '--balance-classes',
+        choices=('none', 'downsample'),
+        default='none',
+        help=(
+            'downsample: corta a classe majoritária aleatóriamente até ter o mesmo nº de imagens '
+            'que a minoria (~50/50 global antes do split). none: mantém todas as imagens.'
+        ),
+    )
+    parser.add_argument(
+        '--max-images-per-subject',
+        type=int,
+        default=0,
+        help=(
+            'Se > 0, antes do balanceamento mantém no máximo N imagens por sujeito (amostragem aleatória). '
+            'Ajuda quando poucos pacientes concentrarem muitas séries.'
+        ),
+    )
     return parser.parse_args()
 
 
@@ -99,6 +118,45 @@ def collect_dataset_rows(dataset_dir: Path) -> pd.DataFrame:
     if not rows:
         raise ValueError('Nenhuma imagem válida encontrada no dataset informado.')
     return pd.DataFrame(rows)
+
+
+def cap_images_per_subject(dataset_df: pd.DataFrame, max_per_subject: int, seed: int) -> pd.DataFrame:
+    # Limita quantas fatias por paciente entram, para não dominar o treino com poucos sujeitos.
+    rng = random.Random(seed)
+    chunks: list[pd.DataFrame] = []
+    for _, group in dataset_df.groupby('subject_id', sort=False):
+        if len(group) <= max_per_subject:
+            chunks.append(group)
+            continue
+        positions = rng.sample(range(len(group)), k=max_per_subject)
+        chunks.append(group.iloc[sorted(positions)])
+    out = pd.concat(chunks, ignore_index=True)
+    before, after = len(dataset_df), len(out)
+    print(f'--max-images-per-subject={max_per_subject}: {before} -> {after} imagens.')
+    return out
+
+
+def balance_classes_downsample(dataset_df: pd.DataFrame, seed: int) -> pd.DataFrame:
+    # Iguala contagens por classe (imagens): amostra sem reposição na maioria até n = min classe.
+    counts = dataset_df['label'].value_counts()
+    if len(counts) < 2:
+        print('Aviso: só uma classe; balance-classes=downsample ignorado.')
+        return dataset_df
+    target_n = int(counts.min())
+    parts: list[pd.DataFrame] = []
+    for label in counts.index:
+        g = dataset_df[dataset_df['label'] == label]
+        if len(g) <= target_n:
+            parts.append(g)
+        else:
+            parts.append(g.sample(n=target_n, random_state=seed, replace=False))
+    out = pd.concat(parts, ignore_index=True)
+    new_counts = out['label'].value_counts()
+    print(
+        'Balanceamento (downsample para a minoria): '
+        f'{counts.to_dict()} -> {new_counts.to_dict()} | total {len(out)} imagens.',
+    )
+    return out
 
 
 def get_stratify_labels_or_none(labels: pd.Series, stage_name: str) -> pd.Series | None:
@@ -214,6 +272,15 @@ def main() -> None:
 
     validate_sizes(args.train_size, args.val_size, args.test_size)
     dataset_df = collect_dataset_rows(dataset_dir)
+    if args.max_images_per_subject > 0:
+        dataset_df = cap_images_per_subject(
+            dataset_df,
+            args.max_images_per_subject,
+            args.seed,
+        )
+    if args.balance_classes == 'downsample':
+        dataset_df = balance_classes_downsample(dataset_df, args.seed)
+
     split_df = split_subjects(
         dataset_df=dataset_df,
         train_size=args.train_size,

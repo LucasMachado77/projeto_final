@@ -55,13 +55,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         '--split-csv',
         type=Path,
-        default=Path('reports_adni/split_assignments.csv'),
-        help='CSV gerado no passo 02.',
+        default=Path('reports_adni/split_assignments_grouped_binary.csv'),
+        help='CSV do passo 02c (split por paciente, labels binárias).',
     )
     parser.add_argument(
         '--output-dir',
         type=Path,
-        default=Path('reports_adni/cnn_transfer_learning'),
+        default=Path('reports_adni/cnn_transfer_learning_e5_grouped_binary'),
         help='Pasta de saída para métricas, histórico e modelo.',
     )
     parser.add_argument(
@@ -79,7 +79,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         '--epochs',
         type=int,
-        default=3,
+        default=5,
         help='Quantidade de épocas de treino.',
     )
     parser.add_argument(
