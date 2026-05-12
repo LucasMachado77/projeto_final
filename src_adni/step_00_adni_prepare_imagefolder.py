@@ -542,6 +542,45 @@ def sort_dicom_files(series_dir: Path) -> list[Path]:
     return [p for _, p in scored]
 
 
+def _pixel_array_to_2d_slice(pixels: np.ndarray) -> np.ndarray:
+    # Uniformiza pixel_array do pydicom para matriz 2D (PIL / percentis esperam HxW).
+    # Trata multi-frame, singletons (ex. 1x1x256) e volumes 3D (fatia central num eixo).
+    arr = np.asarray(pixels, dtype=np.float32)
+    a = np.squeeze(arr)
+    if a.ndim == 0:
+        raise ValueError('pixel_array degenerado (escalar).')
+    if a.ndim == 2:
+        return a
+    if a.ndim == 1:
+        # Ex.: série 1×1×N (strip 1D) — uma linha deixamos como imagem 1×N
+        return np.expand_dims(a, axis=0)
+    if a.ndim == 3:
+        # Heurística: fatia central ao longo do eixo mais curto (típico: nº de cortes vs H×W).
+        depth_axis = int(np.argmin(a.shape))
+        mid = a.shape[depth_axis] // 2
+        sl = [slice(None), slice(None), slice(None)]
+        sl[depth_axis] = mid
+        out = np.asarray(a[tuple(sl)], dtype=np.float32)
+        out = np.squeeze(out)
+        if out.ndim != 2:
+            # Fallback: colapsar mais um singleton
+            out = np.squeeze(out)
+        if out.ndim == 1:
+            return np.expand_dims(out, axis=0)
+        if out.ndim == 2:
+            return out
+        raise ValueError(f'Não foi possível reduzir pixel_array 3D a 2D: shape original {arr.shape}.')
+    # 4D+ (ex.: multiframe com canais): remove eixos unitários até 3D
+    b = np.asarray(arr, dtype=np.float32)
+    while b.ndim > 3:
+        b = np.squeeze(b)
+        if b.ndim < 3:
+            break
+    if b.ndim == 3:
+        return _pixel_array_to_2d_slice(b)
+    raise ValueError(f'Forma de pixel_array não suportada: {pixels.shape}')
+
+
 def volume_middle_slice_2d(series_dir: Path) -> np.ndarray:
     # Lê a série, empilha e devolve fatia 2D do meio (uint8 para PNG).
     files = list(series_dir.glob('*.dcm'))
@@ -550,7 +589,7 @@ def volume_middle_slice_2d(series_dir: Path) -> np.ndarray:
 
     if len(files) == 1:
         ds = pydicom.dcmread(files[0], force=True)
-        arr = ds.pixel_array.astype(np.float32)
+        arr = _pixel_array_to_2d_slice(ds.pixel_array)
     else:
         ordered = sort_dicom_files(series_dir)
         if not ordered:
@@ -558,7 +597,7 @@ def volume_middle_slice_2d(series_dir: Path) -> np.ndarray:
         layers: list[np.ndarray] = []
         for fp in ordered:
             ds = pydicom.dcmread(fp, force=True)
-            plane = ds.pixel_array.astype(np.float32)
+            plane = _pixel_array_to_2d_slice(ds.pixel_array)
             if hasattr(ds, 'RescaleSlope') or hasattr(ds, 'RescaleIntercept'):
                 slope = float(getattr(ds, 'RescaleSlope', 1.0) or 1.0)
                 intercept = float(getattr(ds, 'RescaleIntercept', 0.0) or 0.0)
