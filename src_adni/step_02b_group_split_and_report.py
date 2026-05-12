@@ -75,6 +75,18 @@ def parse_args() -> argparse.Namespace:
             'Ajuda quando poucos pacientes concentrarem muitas séries.'
         ),
     )
+    parser.add_argument(
+        '--duplicate-subject-policy',
+        choices=('longitudinal', 'error', 'exclude', 'majority', 'any_demented'),
+        default='longitudinal',
+        help=(
+            'ADNI longitudinal: o mesmo subject_id pode ter imagens Non Demented e Demented (evolução). '
+            'longitudinal (padrão): split por paciente sem vazamento; cada imagem mantém a label da visita; '
+            'estratificação usa se o sujeito teve alguma vez exame Demented. '
+            'error: falha se houver labels mistas. exclude/majority/any_demented: simplificam para uma classe '
+            'por paciente (descartam exames — só use se o desenho do estudo exigir).'
+        ),
+    )
     return parser.parse_args()
 
 
@@ -159,6 +171,81 @@ def balance_classes_downsample(dataset_df: pd.DataFrame, seed: int) -> pd.DataFr
     return out
 
 
+def _conflicting_subject_ids(dataset_df: pd.DataFrame) -> list[str]:
+    # Sujeitos que aparecem com mais do que um valor em `label` (pastas diferentes).
+    nunique = dataset_df.groupby('subject_id')['label'].nunique()
+    return nunique[nunique > 1].index.tolist()
+
+
+def resolve_duplicate_subject_labels(dataset_df: pd.DataFrame, policy: str) -> pd.DataFrame:
+    # Para políticas que descartam ou colapsam labels; longitudinal não altera linhas (split trata no grupo).
+    if policy == 'longitudinal':
+        return dataset_df
+
+    conflict_ids = _conflicting_subject_ids(dataset_df)
+    if not conflict_ids:
+        return dataset_df
+
+    if policy == 'error':
+        sample = dataset_df[dataset_df['subject_id'].isin(conflict_ids)].sort_values(
+            ['subject_id', 'label'],
+        )
+        preview = sample.head(25).to_string(index=False)
+        raise ValueError(
+            'Há sujeitos com mais de uma label (frequentemente ADNI: evolução CN/MCI → AD). '
+            f'Total com conflito: {len(conflict_ids)}. '
+            'Use --duplicate-subject-policy longitudinal (recomendado ADNI) | exclude | majority | any_demented.\n'
+            f'Pré-visualização (até 25 linhas):\n{preview}',
+        )
+
+    if policy == 'exclude':
+        before_n = len(dataset_df)
+        out = dataset_df[~dataset_df['subject_id'].isin(conflict_ids)].copy()
+        print(
+            f'--duplicate-subject-policy=exclude: removidas {before_n - len(out)} imagens '
+            f'({len(conflict_ids)} sujeitos com labels mistas).',
+        )
+        if out.empty:
+            raise ValueError('Após exclude não restaram imagens; reduza restrições ou mude a política.')
+        return out
+
+    def assign_majority(labels: pd.Series) -> str:
+        # Label mais frequente por sujeito; empate favorece Demented.
+        vc = labels.value_counts()
+        best_count = int(vc.max())
+        tied = [str(x) for x in vc.index if int(vc[x]) == best_count]
+        if len(tied) > 1:
+            return 'Demented' if 'Demented' in tied else sorted(tied)[0]
+        return str(vc.index[0])
+
+    def assign_any_demented(labels: pd.Series) -> str:
+        # Qualquer exame Demented: sujeito fica na classe Demented; remove-se o resto das linhas desse sujeito.
+        if (labels == 'Demented').any():
+            return 'Demented'
+        return 'Non Demented'
+
+    if policy == 'majority':
+        resolver = assign_majority
+    elif policy == 'any_demented':
+        resolver = assign_any_demented
+    else:
+        raise ValueError(f'Política desconhecida: {policy}')
+
+    resolved_series = dataset_df.groupby('subject_id', sort=False)['label'].agg(resolver)
+    merged = dataset_df.copy()
+    merged['_resolved_label'] = merged['subject_id'].map(resolved_series)
+    before_n = len(merged)
+    out = merged[merged['label'] == merged['_resolved_label']].drop(columns=['_resolved_label']).copy()
+    dropped = before_n - len(out)
+    print(
+        f'--duplicate-subject-policy={policy}: {len(conflict_ids)} sujeitos com labels mistas; '
+        f'removidas {dropped} imagens cuja pasta não coincide com a label resolvida por sujeito.',
+    )
+    if out.empty:
+        raise ValueError('Após resolver duplicados não restaram imagens.')
+    return out
+
+
 def get_stratify_labels_or_none(labels: pd.Series, stage_name: str) -> pd.Series | None:
     # Usa estratificação só quando há sujeitos suficientes por classe para evitar erro.
     label_counts = labels.value_counts()
@@ -179,14 +266,61 @@ def split_subjects(
     val_size: float,
     test_size: float,
     seed: int,
+    *,
+    longitudinal: bool,
 ) -> pd.DataFrame:
-    # Cria tabela de sujeitos únicos + label para estratificar no nível do paciente.
+    # longitudinal=True: um split (train/val/test) por sujeito; label por exame inalterada (progressão natural).
+    if longitudinal:
+
+        def subject_stratify_label(labels: pd.Series) -> str:
+            # Mantém proporção semelhante de sujeitos “com algum exame Demented” entre conjuntos.
+            return 'Demented' if (labels == 'Demented').any() else 'Non Demented'
+
+        strat = dataset_df.groupby('subject_id', sort=False)['label'].agg(subject_stratify_label)
+        subject_df = strat.rename('stratify_label').reset_index()
+        stratify_first = get_stratify_labels_or_none(subject_df['stratify_label'], 'train_vs_temp')
+        train_subjects, temp_subjects = train_test_split(
+            subject_df,
+            test_size=(1.0 - train_size),
+            random_state=seed,
+            stratify=stratify_first,
+        )
+        val_ratio_inside_temp = val_size / (val_size + test_size)
+        stratify_second = get_stratify_labels_or_none(temp_subjects['stratify_label'], 'val_vs_test')
+        val_subjects, test_subjects = train_test_split(
+            temp_subjects,
+            test_size=(1.0 - val_ratio_inside_temp),
+            random_state=seed,
+            stratify=stratify_second,
+        )
+        train_subjects = train_subjects.copy()
+        val_subjects = val_subjects.copy()
+        test_subjects = test_subjects.copy()
+        train_subjects['split'] = 'train'
+        val_subjects['split'] = 'val'
+        test_subjects['split'] = 'test'
+        subject_split_df = pd.concat([train_subjects, val_subjects, test_subjects], ignore_index=True)
+        split_df = dataset_df.merge(
+            subject_split_df[['subject_id', 'split']],
+            on='subject_id',
+            how='inner',
+        )
+        n_mixed = len(_conflicting_subject_ids(dataset_df))
+        if n_mixed:
+            print(
+                f'Modo longitudinal: {n_mixed} sujeitos com exames em ambas as classes; '
+                'todas as imagens do mesmo paciente partilham split; label = pasta de cada exame.',
+            )
+        return split_df
+
+    # Um único rótulo clínico por paciente (após resolve_*).
     subject_df = dataset_df[['subject_id', 'label']].drop_duplicates()
     duplicated_subject_labels = subject_df.duplicated(subset=['subject_id'], keep=False)
     if duplicated_subject_labels.any():
-        # Evita ambiguidade caso um mesmo sujeito apareça com labels diferentes.
-        raise ValueError('Há sujeitos com mais de uma label; revise o dataset.')
-
+        raise ValueError(
+            'Há sujeitos com mais de uma label; use --duplicate-subject-policy longitudinal '
+            'ou aplique exclude/majority/any_demented antes do split.',
+        )
     # Primeiro split: treino vs temporário.
     stratify_first = get_stratify_labels_or_none(subject_df['label'], 'train_vs_temp')
     train_subjects, temp_subjects = train_test_split(
@@ -272,6 +406,8 @@ def main() -> None:
 
     validate_sizes(args.train_size, args.val_size, args.test_size)
     dataset_df = collect_dataset_rows(dataset_dir)
+    # Resolver o mesmo paciente em duas pastas antes de caps/balance (ADNI longitudinal).
+    dataset_df = resolve_duplicate_subject_labels(dataset_df, args.duplicate_subject_policy)
     if args.max_images_per_subject > 0:
         dataset_df = cap_images_per_subject(
             dataset_df,
@@ -287,6 +423,7 @@ def main() -> None:
         val_size=args.val_size,
         test_size=args.test_size,
         seed=args.seed,
+        longitudinal=args.duplicate_subject_policy == 'longitudinal',
     )
     verify_no_subject_leakage(split_df)
 
