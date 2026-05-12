@@ -10,30 +10,14 @@ data/
 *.rar
 *.7z
 
-# Artefatos de treino
-reports/**/best_model*.pth
-reports/**/checkpoint*.pth
-reports/**/history.csv
-reports/gradcam_grouped_binary/*.png
-reports/**/events.out.tfevents*
-reports/**/runs/
+reports/**/best_model_vit_b_16.pth
 
-# Mantém o repositório enxuto para entrega (versionar apenas relatórios finais essenciais)
-reports/**
-!reports/final_comparison/
-!reports/final_comparison/comparison_table.csv
-!reports/final_comparison/comparison_table.md
-!reports/*/metrics.json
-!reports/*/classification_report_test.json
-!reports/*/confusion_matrix.csv
-!reports/split_assignments.csv
-!reports/split_assignments_grouped.csv
-!reports/split_assignments_grouped_binary.csv
+# Caminhos ADNI por máquina (copiar de config_adni.local.example.json)
+config_adni.local.json
+.adni_paths.json
 
 # SO/editor
 .DS_Store
 Thumbs.db
 .vscode/
 .idea/
-
-.venv

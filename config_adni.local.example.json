@@ -1,0 +1,11 @@
+{
+  "_note": "adni_data_root: pasta unica no disco externo (CSV + DICOM). Relative paths sao relativos ao config .json.",
+  "adni_data_root": "E:/data_lc",
+  "study_files_dir": null,
+  "dicom_root": null,
+  "dicom_roots": null,
+  "_dicom_roots_note": "opcional: lista de pastas DICOM extra, ex. [\"E:/data_lc/Clinical_T1w_Imaging_Cohort_MRI_2\"] se dicom_root for só MRI_1. O step_00 também descobre MRI_* automaticamente sob adni_data_root.",
+  "output_dir": null,
+  "key_mri_csv": null,
+  "dxsum_csv": null
+}
