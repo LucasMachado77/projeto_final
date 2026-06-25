@@ -28,7 +28,13 @@ def parse_args() -> argparse.Namespace:
         '--vit-metrics',
         type=Path,
         default=None,
-        help='Arquivo metrics.json do ViT (opcional).',
+        help='Arquivo metrics.json do ViT.',
+    )
+    parser.add_argument(
+        '--monai-metrics',
+        type=Path,
+        default=None,
+        help='Arquivo metrics.json do MONAI 2D ResNet18.',
     )
     parser.add_argument(
         '--output-csv',
@@ -67,6 +73,7 @@ def build_comparison_df(
     baseline_metrics: dict[str, object],
     cnn_metrics: dict[str, object],
     vit_metrics: dict[str, object] | None = None,
+    monai_metrics: dict[str, object] | None = None,
 ) -> pd.DataFrame:
     # Cria DataFrame único para facilitar leitura e export em CSV/Markdown.
     rows = [
@@ -95,6 +102,18 @@ def build_comparison_df(
                 'test_accuracy': safe_float(vit_metrics.get('test_accuracy')),
                 'test_loss': safe_float(vit_metrics.get('test_loss')),
                 'notes': 'ViT-B/16 com transfer learning em split por paciente',
+            },
+        )
+    if monai_metrics is not None:
+        rows.append(
+            {
+                'model': 'MONAI 2D ResNet18',
+                'val_accuracy': safe_float(
+                    monai_metrics.get('best_val_accuracy', monai_metrics.get('val_accuracy')),
+                ),
+                'test_accuracy': safe_float(monai_metrics.get('test_accuracy')),
+                'test_loss': safe_float(monai_metrics.get('test_loss')),
+                'notes': 'MONAI ResNet18 2D sem pretraining em split por paciente',
             },
         )
     comparison_df = pd.DataFrame(rows)
@@ -132,10 +151,12 @@ def main() -> None:
     baseline_metrics = load_metrics(args.baseline_metrics)
     cnn_metrics = load_metrics(args.cnn_metrics)
     vit_metrics = load_metrics(args.vit_metrics) if args.vit_metrics is not None else None
+    monai_metrics = load_metrics(args.monai_metrics) if args.monai_metrics is not None else None
     comparison_df = build_comparison_df(
         baseline_metrics=baseline_metrics,
         cnn_metrics=cnn_metrics,
         vit_metrics=vit_metrics,
+        monai_metrics=monai_metrics,
     )
 
     args.output_csv.parent.mkdir(parents=True, exist_ok=True)

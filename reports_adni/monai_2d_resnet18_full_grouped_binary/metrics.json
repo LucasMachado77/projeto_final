@@ -1,0 +1,20 @@
+{
+  "framework": "MONAI",
+  "model": "monai.networks.nets.resnet18",
+  "pretrained": false,
+  "input_channels": 1,
+  "device": "cpu",
+  "epochs_requested": 40,
+  "epochs_ran": 29,
+  "batch_size": 32,
+  "image_size": 224,
+  "learning_rate": 0.001,
+  "weight_decay": 0.0001,
+  "best_by": "val_loss",
+  "best_epoch": 21,
+  "best_val_loss": 0.47525779026396137,
+  "best_val_accuracy": 0.8781512605042017,
+  "test_loss": 0.7002666222638098,
+  "test_accuracy": 0.6551724137931034,
+  "model_path": "reports_adni\\monai_2d_resnet18_full_grouped_binary\\best_model_monai_resnet18.pth"
+}
