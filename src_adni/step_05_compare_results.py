@@ -43,6 +43,12 @@ def parse_args() -> argparse.Namespace:
         help='Arquivo metrics.json do BiomedCLIP embeddings (opcional).',
     )
     parser.add_argument(
+        '--cnn-2p5d-metrics',
+        type=Path,
+        default=None,
+        help='Arquivo metrics.json da CNN ResNet18 2.5D (opcional).',
+    )
+    parser.add_argument(
         '--output-csv',
         type=Path,
         default=Path('reports_adni/final_comparison/comparison_table.csv'),
@@ -81,6 +87,7 @@ def build_comparison_df(
     vit_metrics: dict[str, object] | None = None,
     monai_metrics: dict[str, object] | None = None,
     biomedclip_metrics: dict[str, object] | None = None,
+    cnn_2p5d_metrics: dict[str, object] | None = None,
 ) -> pd.DataFrame:
     # Cria DataFrame único para facilitar leitura e export em CSV/Markdown.
     rows = [
@@ -135,6 +142,16 @@ def build_comparison_df(
                 'notes': 'BiomedCLIP congelado + LogisticRegression balanceada',
             },
         )
+    if cnn_2p5d_metrics is not None:
+        rows.append(
+            {
+                'model': 'CNN 2.5D ResNet18',
+                'val_accuracy': safe_float(cnn_2p5d_metrics.get('best_val_accuracy')),
+                'test_accuracy': safe_float(cnn_2p5d_metrics.get('test_accuracy')),
+                'test_loss': safe_float(cnn_2p5d_metrics.get('test_loss')),
+                'notes': 'ResNet18 transfer learning com canais de fatias adjacentes',
+            },
+        )
     comparison_df = pd.DataFrame(rows)
     return comparison_df
 
@@ -174,12 +191,16 @@ def main() -> None:
     biomedclip_metrics = (
         load_metrics(args.biomedclip_metrics) if args.biomedclip_metrics is not None else None
     )
+    cnn_2p5d_metrics = (
+        load_metrics(args.cnn_2p5d_metrics) if args.cnn_2p5d_metrics is not None else None
+    )
     comparison_df = build_comparison_df(
         baseline_metrics=baseline_metrics,
         cnn_metrics=cnn_metrics,
         vit_metrics=vit_metrics,
         monai_metrics=monai_metrics,
         biomedclip_metrics=biomedclip_metrics,
+        cnn_2p5d_metrics=cnn_2p5d_metrics,
     )
 
     args.output_csv.parent.mkdir(parents=True, exist_ok=True)
