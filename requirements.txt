@@ -9,3 +9,4 @@ torch
 torchvision
 pydicom
 monai
+open_clip_torch
