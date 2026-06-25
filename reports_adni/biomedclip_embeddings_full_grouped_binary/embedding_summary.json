@@ -1,0 +1,17 @@
+{
+  "embedding_dim": 512,
+  "embedding_normalized_l2": true,
+  "train_shape": [
+    1024,
+    512
+  ],
+  "val_shape": [
+    238,
+    512
+  ],
+  "test_shape": [
+    232,
+    512
+  ],
+  "save_embeddings": false
+}

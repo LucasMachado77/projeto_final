@@ -1,0 +1,22 @@
+{
+  "framework": "OpenCLIP",
+  "model": "BiomedCLIP",
+  "model_name": "hf-hub:microsoft/BiomedCLIP-PubMedBERT_256-vit_base_patch16_224",
+  "pretrained": true,
+  "task": "image_embedding_linear_probe",
+  "classifier": "StandardScaler + LogisticRegression",
+  "class_weight": "balanced",
+  "classifier_c": 1.0,
+  "max_iter": 1000,
+  "seed": 42,
+  "device": "cpu",
+  "batch_size": 32,
+  "train_samples": 1024,
+  "val_samples": 238,
+  "test_samples": 232,
+  "embedding_dim": 512,
+  "val_loss": 0.6672295285259797,
+  "val_accuracy": 0.7436974789915967,
+  "test_loss": 0.5777479394619993,
+  "test_accuracy": 0.7241379310344828
+}

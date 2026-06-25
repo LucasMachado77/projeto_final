@@ -3,3 +3,4 @@ Baseline ML,0.7773109243697479,0.7887931034482759,,LogisticRegression com featur
 CNN Transfer Learning,0.7983193277310925,0.8189655172413793,0.48186196335430803,ResNet18 com fine-tuning em split por paciente
 ViT Transfer Learning,0.8991596638655462,0.8922413793103449,0.6270341071589239,ViT-B/16 com transfer learning em split por paciente
 MONAI 2D ResNet18,0.8781512605042017,0.6551724137931034,0.7002666222638098,MONAI ResNet18 2D sem pretraining em split por paciente
+BiomedCLIP Embeddings,0.7436974789915967,0.7241379310344828,0.5777479394619993,BiomedCLIP congelado + LogisticRegression balanceada

@@ -1,0 +1,239 @@
+filepath,true_label,pred_label,correct,prob_Demented,prob_Non_Demented
+E:\data_lc\processed_imagefolder\Demented\005_S_10835__11408860__visit-4_sc__mid.png,Demented,Demented,True,0.938955839725168,0.061044160274832
+E:\data_lc\processed_imagefolder\Demented\006_S_4713__10899028__visit-4_init__mid.png,Demented,Non Demented,False,0.20566587221749866,0.7943341277825013
+E:\data_lc\processed_imagefolder\Demented\006_S_4713__10899029__visit-4_init__mid.png,Demented,Non Demented,False,0.29409147915025047,0.7059085208497495
+E:\data_lc\processed_imagefolder\Demented\006_S_4713__11141769__visit-4_m12__mid.png,Demented,Non Demented,False,0.12300513720978401,0.876994862790216
+E:\data_lc\processed_imagefolder\Demented\006_S_4713__11141771__visit-4_m12__mid.png,Demented,Non Demented,False,0.018223876137165362,0.9817761238628346
+E:\data_lc\processed_imagefolder\Demented\006_S_4713__11571608__visit-4_m24__mid.png,Demented,Non Demented,False,0.2675769472596332,0.7324230527403668
+E:\data_lc\processed_imagefolder\Demented\014_S_10236__10951691__visit-4_sc__mid.png,Demented,Non Demented,False,0.019335476922739403,0.9806645230772606
+E:\data_lc\processed_imagefolder\Demented\019_S_6668__10363658__visit-y5__mid.png,Demented,Demented,True,0.8069594602559116,0.19304053974408844
+E:\data_lc\processed_imagefolder\Demented\021_S_10437__11559427__visit-4_m12__mid.png,Demented,Non Demented,False,0.12868209906080907,0.8713179009391909
+E:\data_lc\processed_imagefolder\Demented\035_S_7021__11553480__visit-4_m12__mid.png,Demented,Non Demented,False,0.184642190467458,0.815357809532542
+E:\data_lc\processed_imagefolder\Demented\052_S_6844__11044845__visit-4_init__mid.png,Demented,Demented,True,0.6339597124806657,0.3660402875193343
+E:\data_lc\processed_imagefolder\Demented\099_S_10466__11612795__visit-4_m12__mid.png,Demented,Non Demented,False,0.342128733352423,0.657871266647577
+E:\data_lc\processed_imagefolder\Demented\100_S_10029__10651628__visit-4_sc__mid.png,Demented,Non Demented,False,0.002909413855547882,0.9970905861444521
+E:\data_lc\processed_imagefolder\Demented\100_S_10029__10651629__visit-4_sc__mid.png,Demented,Non Demented,False,0.014490795232000808,0.9855092047679992
+E:\data_lc\processed_imagefolder\Demented\100_S_10029__11179987__visit-4_m12__mid.png,Demented,Non Demented,False,0.07972814543821638,0.9202718545617836
+E:\data_lc\processed_imagefolder\Demented\100_S_10029__11179988__visit-4_m12__mid.png,Demented,Non Demented,False,0.2654055978521491,0.7345944021478509
+E:\data_lc\processed_imagefolder\Demented\130_S_4294__11419958__visit-4_init__mid.png,Demented,Non Demented,False,0.046522177766949224,0.9534778222330508
+E:\data_lc\processed_imagefolder\Demented\130_S_4294__11419959__visit-4_init__mid.png,Demented,Demented,True,0.8043597291391571,0.19564027086084293
+E:\data_lc\processed_imagefolder\Demented\135_S_10832__11330623__visit-4_sc__mid.png,Demented,Demented,True,0.531146733609694,0.468853266390306
+E:\data_lc\processed_imagefolder\Demented\301_S_10194__10913996__visit-4_sc__mid.png,Demented,Non Demented,False,0.21282744500405748,0.7871725549959425
+E:\data_lc\processed_imagefolder\Demented\301_S_10194__10913997__visit-4_sc__mid.png,Demented,Non Demented,False,0.21020950216745093,0.7897904978325491
+E:\data_lc\processed_imagefolder\Demented\334_S_10813__11325622__visit-4_sc__mid.png,Demented,Non Demented,False,0.04244992189516439,0.9575500781048356
+E:\data_lc\processed_imagefolder\Demented\389_S_10676__11283875__visit-4_sc__mid.png,Demented,Non Demented,False,0.4581868516784956,0.5418131483215044
+E:\data_lc\processed_imagefolder\Demented\941_S_10001__10280538__visit-4_sc__mid.png,Demented,Demented,True,0.5898253571294387,0.41017464287056127
+E:\data_lc\processed_imagefolder\Non Demented\002_S_10814__11306627__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.06863853084444405,0.931361469155556
+E:\data_lc\processed_imagefolder\Non Demented\002_S_4213__11098109__visit-4_init__mid.png,Non Demented,Non Demented,True,0.27712605698095183,0.7228739430190482
+E:\data_lc\processed_imagefolder\Non Demented\002_S_6053__11098084__visit-4_init__mid.png,Non Demented,Non Demented,True,0.4636739224365749,0.5363260775634251
+E:\data_lc\processed_imagefolder\Non Demented\003_S_10082__10454163__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.40265494703431937,0.5973450529656806
+E:\data_lc\processed_imagefolder\Non Demented\003_S_4872__11325701__visit-4_init__mid.png,Non Demented,Demented,False,0.7204237890206797,0.27957621097932034
+E:\data_lc\processed_imagefolder\Non Demented\003_S_6259__10420795__visit-4_init__mid.png,Non Demented,Non Demented,True,0.12859177793401821,0.8714082220659818
+E:\data_lc\processed_imagefolder\Non Demented\003_S_6259__11554480__visit-4_m24__mid.png,Non Demented,Demented,False,0.5040561992915649,0.4959438007084352
+E:\data_lc\processed_imagefolder\Non Demented\005_S_10100__10460270__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.005373085401535693,0.9946269145984643
+E:\data_lc\processed_imagefolder\Non Demented\005_S_10101__10888787__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.2524620360123223,0.7475379639876777
+E:\data_lc\processed_imagefolder\Non Demented\005_S_10646__11253850__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.182213867554761,0.817786132445239
+E:\data_lc\processed_imagefolder\Non Demented\006_S_6234__11142040__visit-4_init__mid.png,Non Demented,Non Demented,True,0.43184910241982044,0.5681508975801796
+E:\data_lc\processed_imagefolder\Non Demented\006_S_6234__11142042__visit-4_init__mid.png,Non Demented,Non Demented,True,0.012742045967250815,0.9872579540327492
+E:\data_lc\processed_imagefolder\Non Demented\006_S_6657__10908314__visit-4_init__mid.png,Non Demented,Non Demented,True,0.34998072867780083,0.6500192713221992
+E:\data_lc\processed_imagefolder\Non Demented\006_S_6657__10908315__visit-4_init__mid.png,Non Demented,Demented,False,0.8591735368833263,0.14082646311667368
+E:\data_lc\processed_imagefolder\Non Demented\006_S_6681__11185693__visit-4_init__mid.png,Non Demented,Demented,False,0.7509385736564551,0.24906142634354494
+E:\data_lc\processed_imagefolder\Non Demented\006_S_6681__11185694__visit-4_init__mid.png,Non Demented,Non Demented,True,0.3511145122735543,0.6488854877264457
+E:\data_lc\processed_imagefolder\Non Demented\011_S_7089__11389333__visit-4_m12__mid.png,Non Demented,Non Demented,True,0.08135131079749724,0.9186486892025028
+E:\data_lc\processed_imagefolder\Non Demented\013_S_6970__11547242__visit-4_init__mid.png,Non Demented,Non Demented,True,0.3965509280159967,0.6034490719840033
+E:\data_lc\processed_imagefolder\Non Demented\014_S_10687__11259277__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.07247786945008816,0.9275221305499118
+E:\data_lc\processed_imagefolder\Non Demented\014_S_6831__10874400__visit-4_init__mid.png,Non Demented,Non Demented,True,0.1203393170718754,0.8796606829281246
+E:\data_lc\processed_imagefolder\Non Demented\016_S_10207__10938181__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.10055286031163457,0.8994471396883654
+E:\data_lc\processed_imagefolder\Non Demented\016_S_10452__11127049__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.18618833716593397,0.813811662834066
+E:\data_lc\processed_imagefolder\Non Demented\019_S_10471__11141436__visit-4_sc__mid.png,Non Demented,Demented,False,0.9958683898811077,0.00413161011889233
+E:\data_lc\processed_imagefolder\Non Demented\019_S_10471__11586430__visit-4_m12__mid.png,Non Demented,Demented,False,0.9388714252792999,0.06112857472070008
+E:\data_lc\processed_imagefolder\Non Demented\019_S_10471__11586431__visit-4_m12__mid.png,Non Demented,Non Demented,True,0.3416380894167048,0.6583619105832952
+E:\data_lc\processed_imagefolder\Non Demented\019_S_10864__11342265__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.1479905440875704,0.8520094559124296
+E:\data_lc\processed_imagefolder\Non Demented\019_S_10864__11342266__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.24636942678188933,0.7536305732181107
+E:\data_lc\processed_imagefolder\Non Demented\019_S_7016__10291876__visit-y2__mid.png,Non Demented,Non Demented,True,0.2959034277191218,0.7040965722808782
+E:\data_lc\processed_imagefolder\Non Demented\019_S_7016__11062834__visit-4_init__mid.png,Non Demented,Non Demented,True,0.07913380699016292,0.9208661930098371
+E:\data_lc\processed_imagefolder\Non Demented\019_S_7016__11482187__visit-4_m12__mid.png,Non Demented,Non Demented,True,0.2056209474859667,0.7943790525140333
+E:\data_lc\processed_imagefolder\Non Demented\019_S_7016__11482199__visit-4_m12__mid.png,Non Demented,Non Demented,True,0.002553058977492473,0.9974469410225075
+E:\data_lc\processed_imagefolder\Non Demented\021_S_10437__11097419__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.06776647478407105,0.932233525215929
+E:\data_lc\processed_imagefolder\Non Demented\021_S_10774__11285144__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.0536691943468629,0.9463308056531371
+E:\data_lc\processed_imagefolder\Non Demented\021_S_6914__10291851__visit-4_init__mid.png,Non Demented,Demented,False,0.7864228853404552,0.21357711465954474
+E:\data_lc\processed_imagefolder\Non Demented\021_S_6914__11516999__visit-4_m24__mid.png,Non Demented,Non Demented,True,0.39408945971425646,0.6059105402857435
+E:\data_lc\processed_imagefolder\Non Demented\021_S_7045__11162436__visit-4_m12__mid.png,Non Demented,Non Demented,True,0.015972580319980945,0.984027419680019
+E:\data_lc\processed_imagefolder\Non Demented\022_S_10040__10461527__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.09752633386560972,0.9024736661343903
+E:\data_lc\processed_imagefolder\Non Demented\022_S_10043__10461519__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.012360925673579604,0.9876390743264204
+E:\data_lc\processed_imagefolder\Non Demented\022_S_10046__10461511__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.29475119655952753,0.7052488034404725
+E:\data_lc\processed_imagefolder\Non Demented\022_S_10143__10869210__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.2346808348201661,0.7653191651798339
+E:\data_lc\processed_imagefolder\Non Demented\022_S_10256__11145620__visit-4_sc__mid.png,Non Demented,Demented,False,0.9719102753645438,0.028089724635456243
+E:\data_lc\processed_imagefolder\Non Demented\022_S_10343__11106117__visit-4_sc__mid.png,Non Demented,Demented,False,0.749230593351861,0.2507694066481389
+E:\data_lc\processed_imagefolder\Non Demented\022_S_10348__11094245__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.08649764615861599,0.913502353841384
+E:\data_lc\processed_imagefolder\Non Demented\022_S_10461__11138617__visit-4_sc__mid.png,Non Demented,Demented,False,0.6013494143380045,0.3986505856619955
+E:\data_lc\processed_imagefolder\Non Demented\022_S_10473__11149243__visit-4_sc__mid.png,Non Demented,Demented,False,0.8173245981056839,0.18267540189431608
+E:\data_lc\processed_imagefolder\Non Demented\024_S_10878__11394643__visit-4_sc__mid.png,Non Demented,Demented,False,0.5748932248975973,0.42510677510240263
+E:\data_lc\processed_imagefolder\Non Demented\024_S_2239__11418485__visit-4_init__mid.png,Non Demented,Non Demented,True,0.24720606108270338,0.7527939389172966
+E:\data_lc\processed_imagefolder\Non Demented\024_S_6202__11185422__visit-4_init__mid.png,Non Demented,Demented,False,0.567326620341799,0.43267337965820096
+E:\data_lc\processed_imagefolder\Non Demented\027_S_10272__11036045__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.43285840622124183,0.5671415937787582
+E:\data_lc\processed_imagefolder\Non Demented\027_S_10272__11036046__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.01594580922389155,0.9840541907761085
+E:\data_lc\processed_imagefolder\Non Demented\027_S_10635__11199349__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.033617710489281194,0.9663822895107188
+E:\data_lc\processed_imagefolder\Non Demented\027_S_10635__11199350__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.05270574386787463,0.9472942561321254
+E:\data_lc\processed_imagefolder\Non Demented\027_S_10711__11285156__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.03334155947660522,0.9666584405233948
+E:\data_lc\processed_imagefolder\Non Demented\027_S_10711__11285157__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.12610653489880486,0.8738934651011951
+E:\data_lc\processed_imagefolder\Non Demented\027_S_10719__11309435__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.06677570575050273,0.9332242942494973
+E:\data_lc\processed_imagefolder\Non Demented\027_S_10719__11309436__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.01355227443876994,0.9864477255612301
+E:\data_lc\processed_imagefolder\Non Demented\027_S_6961__11058515__visit-4_init__mid.png,Non Demented,Non Demented,True,0.01788766169217626,0.9821123383078237
+E:\data_lc\processed_imagefolder\Non Demented\027_S_6961__11058516__visit-4_init__mid.png,Non Demented,Non Demented,True,0.009092018926181611,0.9909079810738184
+E:\data_lc\processed_imagefolder\Non Demented\027_S_6961__11466310__visit-4_m12__mid.png,Non Demented,Non Demented,True,0.24103956859527065,0.7589604314047294
+E:\data_lc\processed_imagefolder\Non Demented\031_S_10699__11283789__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.03175815805486093,0.9682418419451391
+E:\data_lc\processed_imagefolder\Non Demented\031_S_10699__11283790__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.018361702792034196,0.9816382972079658
+E:\data_lc\processed_imagefolder\Non Demented\033_S_10210__10937001__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.00878919674204659,0.9912108032579534
+E:\data_lc\processed_imagefolder\Non Demented\033_S_10210__11572715__visit-4_m12__mid.png,Non Demented,Demented,False,0.687566019454935,0.312433980545065
+E:\data_lc\processed_imagefolder\Non Demented\033_S_10215__10936993__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.04233632729886916,0.9576636727011308
+E:\data_lc\processed_imagefolder\Non Demented\033_S_10229__10957118__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.23106089139045427,0.7689391086095457
+E:\data_lc\processed_imagefolder\Non Demented\033_S_10229__11452758__visit-4_m12__mid.png,Non Demented,Demented,False,0.5684014417871142,0.4315985582128858
+E:\data_lc\processed_imagefolder\Non Demented\033_S_6352__11452769__visit-4_m12__mid.png,Non Demented,Non Demented,True,0.44361111582147084,0.5563888841785292
+E:\data_lc\processed_imagefolder\Non Demented\033_S_6352__11502877__visit-4_m24__mid.png,Non Demented,Non Demented,True,0.4218434693692804,0.5781565306307196
+E:\data_lc\processed_imagefolder\Non Demented\035_S_6480__10274990__visit-y5__mid.png,Non Demented,Non Demented,True,0.32198485170327196,0.678015148296728
+E:\data_lc\processed_imagefolder\Non Demented\035_S_6480__10899811__visit-4_init__mid.png,Non Demented,Non Demented,True,0.39695350010061126,0.6030464998993887
+E:\data_lc\processed_imagefolder\Non Demented\035_S_6480__11477976__visit-4_m12__mid.png,Non Demented,Non Demented,True,0.2960256255335655,0.7039743744664345
+E:\data_lc\processed_imagefolder\Non Demented\035_S_7021__11200472__visit-4_init__mid.png,Non Demented,Non Demented,True,0.04311550754626292,0.9568844924537371
+E:\data_lc\processed_imagefolder\Non Demented\035_S_7121__10932457__visit-4_init__mid.png,Non Demented,Non Demented,True,0.10688997145501511,0.8931100285449849
+E:\data_lc\processed_imagefolder\Non Demented\035_S_7121__11149266__visit-4_m12__mid.png,Non Demented,Non Demented,True,0.13500415781791297,0.864995842182087
+E:\data_lc\processed_imagefolder\Non Demented\036_S_10703__11255401__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.024869362949816898,0.9751306370501831
+E:\data_lc\processed_imagefolder\Non Demented\036_S_6088__11475339__visit-4_init__mid.png,Non Demented,Non Demented,True,0.022965100068931377,0.9770348999310686
+E:\data_lc\processed_imagefolder\Non Demented\037_S_10209__11075831__visit-4_sc__mid.png,Non Demented,Demented,False,0.8681382579090953,0.13186174209090473
+E:\data_lc\processed_imagefolder\Non Demented\037_S_4028__11200517__visit-4_init__mid.png,Non Demented,Demented,False,0.8144947015871469,0.18550529841285318
+E:\data_lc\processed_imagefolder\Non Demented\037_S_6083__11491876__visit-4_init__mid.png,Non Demented,Demented,False,0.8196740809840268,0.18032591901597317
+E:\data_lc\processed_imagefolder\Non Demented\037_S_6977__11531032__visit-4_init__mid.png,Non Demented,Non Demented,True,0.46831997294581096,0.531680027054189
+E:\data_lc\processed_imagefolder\Non Demented\037_S_6992__11332558__visit-4_init__mid.png,Non Demented,Non Demented,True,0.34297194794776664,0.6570280520522334
+E:\data_lc\processed_imagefolder\Non Demented\037_S_6993__11196332__visit-4_init__mid.png,Non Demented,Non Demented,True,0.4605436373877144,0.5394563626122856
+E:\data_lc\processed_imagefolder\Non Demented\037_S_7006__11200533__visit-4_init__mid.png,Non Demented,Non Demented,True,0.006678664656700306,0.9933213353432997
+E:\data_lc\processed_imagefolder\Non Demented\041_S_0679__10908298__visit-4_init__mid.png,Non Demented,Non Demented,True,0.31148135286439704,0.688518647135603
+E:\data_lc\processed_imagefolder\Non Demented\041_S_10708__11306650__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.3831500560150868,0.6168499439849132
+E:\data_lc\processed_imagefolder\Non Demented\041_S_5253__11090039__visit-4_init__mid.png,Non Demented,Demented,False,0.9912977979753322,0.008702202024667807
+E:\data_lc\processed_imagefolder\Non Demented\041_S_6401__10298164__visit-y4__mid.png,Non Demented,Non Demented,True,0.03964012017364582,0.9603598798263542
+E:\data_lc\processed_imagefolder\Non Demented\041_S_6401__10435096__visit-4_init__mid.png,Non Demented,Non Demented,True,0.35639033469874615,0.6436096653012539
+E:\data_lc\processed_imagefolder\Non Demented\052_S_10349__11088088__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.4324379492102961,0.5675620507897039
+E:\data_lc\processed_imagefolder\Non Demented\052_S_10400__11088096__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.21354922779300167,0.7864507722069983
+E:\data_lc\processed_imagefolder\Non Demented\067_S_7008__11036072__visit-4_init__mid.png,Non Demented,Demented,False,0.7059696560691802,0.2940303439308199
+E:\data_lc\processed_imagefolder\Non Demented\067_S_7008__11488767__visit-4_m12__mid.png,Non Demented,Non Demented,True,0.24213451700081767,0.7578654829991823
+E:\data_lc\processed_imagefolder\Non Demented\067_S_7059__11419950__visit-4_m12__mid.png,Non Demented,Non Demented,True,0.1098840032523678,0.8901159967476322
+E:\data_lc\processed_imagefolder\Non Demented\070_S_10298__11058529__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.2751916500736076,0.7248083499263924
+E:\data_lc\processed_imagefolder\Non Demented\070_S_4856__10973550__visit-4_init__mid.png,Non Demented,Demented,False,0.8990032373572259,0.10099676264277417
+E:\data_lc\processed_imagefolder\Non Demented\073_S_0089__10298423__visit-4_init__mid.png,Non Demented,Non Demented,True,0.01569123098833758,0.9843087690116624
+E:\data_lc\processed_imagefolder\Non Demented\073_S_10017__10283128__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.30521254443268486,0.6947874555673151
+E:\data_lc\processed_imagefolder\Non Demented\073_S_10017__11493197__visit-4_m24__mid.png,Non Demented,Non Demented,True,0.18181354890173274,0.8181864510982673
+E:\data_lc\processed_imagefolder\Non Demented\073_S_10047__10365150__visit-4_sc__mid.png,Non Demented,Demented,False,0.8790445871649855,0.1209554128350146
+E:\data_lc\processed_imagefolder\Non Demented\073_S_10047__11340042__visit-4_m12__mid.png,Non Demented,Non Demented,True,0.2357453502499649,0.7642546497500351
+E:\data_lc\processed_imagefolder\Non Demented\073_S_10113__10471094__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.18811810566243548,0.8118818943375645
+E:\data_lc\processed_imagefolder\Non Demented\073_S_10172__10907094__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.026369581691336963,0.973630418308663
+E:\data_lc\processed_imagefolder\Non Demented\073_S_10177__10988394__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.04862180654654791,0.9513781934534521
+E:\data_lc\processed_imagefolder\Non Demented\082_S_10777__11285274__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.09461067036257775,0.9053893296374222
+E:\data_lc\processed_imagefolder\Non Demented\082_S_10809__11311270__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.30009479601724687,0.6999052039827531
+E:\data_lc\processed_imagefolder\Non Demented\082_S_6564__11306665__visit-4_init__mid.png,Non Demented,Demented,False,0.6135791352675624,0.3864208647324377
+E:\data_lc\processed_imagefolder\Non Demented\082_S_6629__11570021__visit-4_init__mid.png,Non Demented,Non Demented,True,0.19566049748940006,0.8043395025105999
+E:\data_lc\processed_imagefolder\Non Demented\098_S_10357__11058533__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.12366746949958884,0.8763325305004112
+E:\data_lc\processed_imagefolder\Non Demented\098_S_10357__11058534__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.3022154717444351,0.6977845282555649
+E:\data_lc\processed_imagefolder\Non Demented\098_S_10358__11061098__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.023973876683203943,0.9760261233167961
+E:\data_lc\processed_imagefolder\Non Demented\098_S_10358__11061099__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.019779008226870065,0.9802209917731299
+E:\data_lc\processed_imagefolder\Non Demented\098_S_10631__11204498__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.3856431081949899,0.6143568918050101
+E:\data_lc\processed_imagefolder\Non Demented\098_S_10631__11204499__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.12175553030809061,0.8782444696919094
+E:\data_lc\processed_imagefolder\Non Demented\098_S_10632__11261356__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.003067462798886922,0.9969325372011131
+E:\data_lc\processed_imagefolder\Non Demented\098_S_10632__11261357__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.03892730421169621,0.9610726957883038
+E:\data_lc\processed_imagefolder\Non Demented\098_S_10633__11311283__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.05065515433471379,0.9493448456652862
+E:\data_lc\processed_imagefolder\Non Demented\099_S_10466__11141448__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.09169830743564611,0.9083016925643539
+E:\data_lc\processed_imagefolder\Non Demented\100_S_10028__10651644__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.2195847720024704,0.7804152279975296
+E:\data_lc\processed_imagefolder\Non Demented\100_S_10028__10651645__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.09844058966058333,0.9015594103394167
+E:\data_lc\processed_imagefolder\Non Demented\100_S_6273__10651624__visit-4_init__mid.png,Non Demented,Non Demented,True,0.16709030202135544,0.8329096979786446
+E:\data_lc\processed_imagefolder\Non Demented\100_S_6273__10651625__visit-4_init__mid.png,Non Demented,Non Demented,True,0.026879662974637952,0.973120337025362
+E:\data_lc\processed_imagefolder\Non Demented\100_S_6349__10651604__visit-4_init__mid.png,Non Demented,Non Demented,True,0.10710562513990562,0.8928943748600944
+E:\data_lc\processed_imagefolder\Non Demented\100_S_6349__10651605__visit-4_init__mid.png,Non Demented,Non Demented,True,0.2561689966631273,0.7438310033368727
+E:\data_lc\processed_imagefolder\Non Demented\114_S_10283__11052208__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.18687258249659233,0.8131274175034077
+E:\data_lc\processed_imagefolder\Non Demented\114_S_10615__11179997__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.010465990201197872,0.9895340097988021
+E:\data_lc\processed_imagefolder\Non Demented\114_S_6063__11184736__visit-4_init__mid.png,Non Demented,Non Demented,True,0.06918274913813849,0.9308172508618615
+E:\data_lc\processed_imagefolder\Non Demented\114_S_6309__11466345__visit-4_init__mid.png,Non Demented,Non Demented,True,0.4140463462431838,0.5859536537568162
+E:\data_lc\processed_imagefolder\Non Demented\114_S_6462__11182111__visit-4_init__mid.png,Non Demented,Non Demented,True,0.006497665582762435,0.9935023344172376
+E:\data_lc\processed_imagefolder\Non Demented\123_S_10796__11298686__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.04083329968579885,0.9591667003142011
+E:\data_lc\processed_imagefolder\Non Demented\123_S_10796__11298687__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.1514994644054587,0.8485005355945413
+E:\data_lc\processed_imagefolder\Non Demented\123_S_10816__11314987__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.011717445532568815,0.9882825544674312
+E:\data_lc\processed_imagefolder\Non Demented\123_S_10816__11314988__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.00892364888722752,0.9910763511127725
+E:\data_lc\processed_imagefolder\Non Demented\123_S_10821__11314978__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.44741228883512385,0.5525877111648761
+E:\data_lc\processed_imagefolder\Non Demented\123_S_10821__11314979__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.09637399901737675,0.9036260009826232
+E:\data_lc\processed_imagefolder\Non Demented\123_S_4127__10281578__visit-y5__mid.png,Non Demented,Non Demented,True,0.18003009238378265,0.8199699076162174
+E:\data_lc\processed_imagefolder\Non Demented\123_S_4127__11084578__visit-4_init__mid.png,Non Demented,Non Demented,True,0.19852458283938057,0.8014754171606194
+E:\data_lc\processed_imagefolder\Non Demented\123_S_4127__11084579__visit-4_init__mid.png,Non Demented,Non Demented,True,0.13346523016089773,0.8665347698391023
+E:\data_lc\processed_imagefolder\Non Demented\126_S_4514__10231011__visit-y5__mid.png,Non Demented,Demented,False,0.9132835162886921,0.08671648371130797
+E:\data_lc\processed_imagefolder\Non Demented\126_S_4514__10665277__visit-4_init__mid.png,Non Demented,Non Demented,True,0.41193528474564356,0.5880647152543564
+E:\data_lc\processed_imagefolder\Non Demented\126_S_4514__11311289__visit-4_m12__mid.png,Non Demented,Demented,False,0.9553691700212795,0.044630829978720504
+E:\data_lc\processed_imagefolder\Non Demented\127_S_6147__11175778__visit-4_init__mid.png,Non Demented,Demented,False,0.5021751327733245,0.4978248672266755
+E:\data_lc\processed_imagefolder\Non Demented\127_S_6147__11175779__visit-4_init__mid.png,Non Demented,Non Demented,True,0.316643649328185,0.683356350671815
+E:\data_lc\processed_imagefolder\Non Demented\127_S_6436__11317418__visit-4_init__mid.png,Non Demented,Demented,False,0.798423590340077,0.20157640965992293
+E:\data_lc\processed_imagefolder\Non Demented\127_S_6436__11317419__visit-4_init__mid.png,Non Demented,Demented,False,0.8953520938542574,0.10464790614574264
+E:\data_lc\processed_imagefolder\Non Demented\127_S_6512__11175768__visit-4_init__mid.png,Non Demented,Non Demented,True,0.48733828913434174,0.5126617108656583
+E:\data_lc\processed_imagefolder\Non Demented\127_S_6512__11175769__visit-4_init__mid.png,Non Demented,Non Demented,True,0.06973353689419381,0.9302664631058062
+E:\data_lc\processed_imagefolder\Non Demented\127_S_6512__11591184__visit-4_m12__mid.png,Non Demented,Non Demented,True,0.27894720802111606,0.721052791978884
+E:\data_lc\processed_imagefolder\Non Demented\127_S_6512__11591185__visit-4_m12__mid.png,Non Demented,Non Demented,True,0.16607809104639426,0.8339219089536057
+E:\data_lc\processed_imagefolder\Non Demented\128_S_4607__11151732__visit-y4__mid.png,Non Demented,Non Demented,True,0.4600940974682093,0.5399059025317907
+E:\data_lc\processed_imagefolder\Non Demented\128_S_4607__11482366__visit-4_m12__mid.png,Non Demented,Non Demented,True,0.294556945513625,0.705443054486375
+E:\data_lc\processed_imagefolder\Non Demented\129_S_10527__11140583__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.2661030916813204,0.7338969083186796
+E:\data_lc\processed_imagefolder\Non Demented\129_S_10537__11142906__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.26501164542399147,0.7349883545760085
+E:\data_lc\processed_imagefolder\Non Demented\129_S_6304__11141464__visit-4_m12__mid.png,Non Demented,Non Demented,True,0.15600689211752405,0.843993107882476
+E:\data_lc\processed_imagefolder\Non Demented\130_S_0969__10229251__visit-y2__mid.png,Non Demented,Demented,False,0.7263954411094831,0.273604558890517
+E:\data_lc\processed_imagefolder\Non Demented\130_S_6111__11437990__visit-4_init__mid.png,Non Demented,Non Demented,True,0.4683247561429781,0.5316752438570219
+E:\data_lc\processed_imagefolder\Non Demented\130_S_6111__11437991__visit-4_init__mid.png,Non Demented,Non Demented,True,0.015794742539872342,0.9842052574601277
+E:\data_lc\processed_imagefolder\Non Demented\130_S_6319__11141452__visit-4_init__mid.png,Non Demented,Non Demented,True,0.004209038764035888,0.9957909612359641
+E:\data_lc\processed_imagefolder\Non Demented\130_S_6319__11141453__visit-4_init__mid.png,Non Demented,Non Demented,True,0.008498821319613215,0.9915011786803868
+E:\data_lc\processed_imagefolder\Non Demented\130_S_6319__11570025__visit-4_m12__mid.png,Non Demented,Non Demented,True,0.2653675648482343,0.7346324351517657
+E:\data_lc\processed_imagefolder\Non Demented\130_S_6319__11570026__visit-4_m12__mid.png,Non Demented,Non Demented,True,0.04091233453607335,0.9590876654639267
+E:\data_lc\processed_imagefolder\Non Demented\131_S_10815__11326525__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.15191659216122855,0.8480834078387715
+E:\data_lc\processed_imagefolder\Non Demented\135_S_10561__11138637__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.1345729957631262,0.8654270042368738
+E:\data_lc\processed_imagefolder\Non Demented\135_S_10681__11204506__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.3669829201919873,0.6330170798080127
+E:\data_lc\processed_imagefolder\Non Demented\135_S_6544__10281597__visit-y5__mid.png,Non Demented,Non Demented,True,0.1237675786694884,0.8762324213305116
+E:\data_lc\processed_imagefolder\Non Demented\135_S_6544__11039393__visit-4_init__mid.png,Non Demented,Non Demented,True,0.4013932298183853,0.5986067701816147
+E:\data_lc\processed_imagefolder\Non Demented\135_S_6544__11479096__visit-4_m12__mid.png,Non Demented,Non Demented,True,0.025738553366151717,0.9742614466338483
+E:\data_lc\processed_imagefolder\Non Demented\135_S_6586__10664137__visit-4_init__mid.png,Non Demented,Non Demented,True,0.035755902951424945,0.964244097048575
+E:\data_lc\processed_imagefolder\Non Demented\137_S_10447__11200562__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.00360281381998262,0.9963971861800174
+E:\data_lc\processed_imagefolder\Non Demented\137_S_10670__11298366__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.06440116209005142,0.9355988379099486
+E:\data_lc\processed_imagefolder\Non Demented\137_S_10671__11202765__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.004694264307362084,0.9953057356926379
+E:\data_lc\processed_imagefolder\Non Demented\137_S_6654__11058538__visit-4_init__mid.png,Non Demented,Non Demented,True,0.19719249490670243,0.8028075050932976
+E:\data_lc\processed_imagefolder\Non Demented\137_S_6654__11495001__visit-4_m12__mid.png,Non Demented,Non Demented,True,0.25532207744470903,0.744677922555291
+E:\data_lc\processed_imagefolder\Non Demented\153_S_6679__10227031__visit-sc__mid.png,Non Demented,Demented,False,0.9886419245465238,0.011358075453476247
+E:\data_lc\processed_imagefolder\Non Demented\168_S_6065__11452781__visit-4_init__mid.png,Non Demented,Non Demented,True,0.07342886881322064,0.9265711311867794
+E:\data_lc\processed_imagefolder\Non Demented\168_S_6085__10236670__visit-y4__mid.png,Non Demented,Demented,False,0.5268460083571678,0.4731539916428322
+E:\data_lc\processed_imagefolder\Non Demented\168_S_6371__10248336__visit-y3__mid.png,Non Demented,Non Demented,True,0.06146739806571089,0.9385326019342891
+E:\data_lc\processed_imagefolder\Non Demented\168_S_6371__10248343__visit-y3__mid.png,Non Demented,Non Demented,True,0.11384525580507387,0.8861547441949261
+E:\data_lc\processed_imagefolder\Non Demented\168_S_6371__11514907__visit-4_m12__mid.png,Non Demented,Non Demented,True,0.1727257382880545,0.8272742617119455
+E:\data_lc\processed_imagefolder\Non Demented\168_S_6875__11519088__visit-4_m12__mid.png,Non Demented,Non Demented,True,0.47061632529274355,0.5293836747072564
+E:\data_lc\processed_imagefolder\Non Demented\301_S_10230__10939738__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.05356589048999494,0.9464341095100051
+E:\data_lc\processed_imagefolder\Non Demented\301_S_10230__10939739__visit-4_sc__mid.png,Non Demented,Demented,False,0.9220945929900982,0.07790540700990176
+E:\data_lc\processed_imagefolder\Non Demented\305_S_10311__11049930__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.09305502077253003,0.90694497922747
+E:\data_lc\processed_imagefolder\Non Demented\305_S_10311__11049931__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.11708737661991142,0.8829126233800886
+E:\data_lc\processed_imagefolder\Non Demented\305_S_10806__11315017__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.41505835830218996,0.58494164169781
+E:\data_lc\processed_imagefolder\Non Demented\305_S_10806__11315018__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.4309759960735251,0.5690240039264749
+E:\data_lc\processed_imagefolder\Non Demented\305_S_6742__11038245__visit-y2__mid.png,Non Demented,Non Demented,True,0.15956416620002367,0.8404358337999763
+E:\data_lc\processed_imagefolder\Non Demented\389_S_10115__10899798__visit-4_sc__mid.png,Non Demented,Demented,False,0.6601680870541382,0.33983191294586174
+E:\data_lc\processed_imagefolder\Non Demented\389_S_10115__11515254__visit-4_m12__mid.png,Non Demented,Demented,False,0.7790307794439725,0.2209692205560275
+E:\data_lc\processed_imagefolder\Non Demented\405_S_10397__11081294__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.029200787503644743,0.9707992124963553
+E:\data_lc\processed_imagefolder\Non Demented\405_S_10397__11081295__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.05061654140401528,0.9493834585959847
+E:\data_lc\processed_imagefolder\Non Demented\405_S_10854__11347300__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.24265203561002024,0.7573479643899798
+E:\data_lc\processed_imagefolder\Non Demented\405_S_10854__11347301__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.10928661084466118,0.8907133891553388
+E:\data_lc\processed_imagefolder\Non Demented\941_S_10002__10263879__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.051973137863328245,0.9480268621366718
+E:\data_lc\processed_imagefolder\Non Demented\941_S_10002__10973565__visit-4_m12__mid.png,Non Demented,Non Demented,True,0.04110322453685833,0.9588967754631417
+E:\data_lc\processed_imagefolder\Non Demented\941_S_10002__11435962__visit-4_m24__mid.png,Non Demented,Non Demented,True,0.03081731123693421,0.9691826887630658
+E:\data_lc\processed_imagefolder\Non Demented\941_S_10003__10263887__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.0036121499326881024,0.9963878500673119
+E:\data_lc\processed_imagefolder\Non Demented\941_S_10003__11058732__visit-4_m12__mid.png,Non Demented,Non Demented,True,0.27765982417536117,0.7223401758246388
+E:\data_lc\processed_imagefolder\Non Demented\941_S_10003__11448634__visit-4_m24__mid.png,Non Demented,Demented,False,0.5627433747502428,0.43725662524975717
+E:\data_lc\processed_imagefolder\Non Demented\941_S_10004__10280547__visit-4_sc__mid.png,Non Demented,Demented,False,0.9194614357720342,0.08053856422796578
+E:\data_lc\processed_imagefolder\Non Demented\941_S_10010__10281430__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.4366182106549239,0.5633817893450761
+E:\data_lc\processed_imagefolder\Non Demented\941_S_10011__10283130__visit-4_sc__mid.png,Non Demented,Demented,False,0.5115413838738323,0.48845861612616776
+E:\data_lc\processed_imagefolder\Non Demented\941_S_10011__11058690__visit-4_m12__mid.png,Non Demented,Non Demented,True,0.3615606732314137,0.6384393267685863
+E:\data_lc\processed_imagefolder\Non Demented\941_S_10011__11479979__visit-4_m24__mid.png,Non Demented,Non Demented,True,0.3878372583492534,0.6121627416507466
+E:\data_lc\processed_imagefolder\Non Demented\941_S_10012__10283138__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.27063656558229,0.72936343441771
+E:\data_lc\processed_imagefolder\Non Demented\941_S_10012__10283904__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.2978809514858727,0.7021190485141273
+E:\data_lc\processed_imagefolder\Non Demented\941_S_10015__10283152__visit-4_sc__mid.png,Non Demented,Demented,False,0.965027792368302,0.034972207631697914
+E:\data_lc\processed_imagefolder\Non Demented\941_S_10111__10568492__visit-4_sc__mid.png,Non Demented,Demented,False,0.810554581437963,0.18944541856203698
+E:\data_lc\processed_imagefolder\Non Demented\941_S_10111__11254028__visit-4_m12__mid.png,Non Demented,Demented,False,0.5274789642335153,0.47252103576648474
+E:\data_lc\processed_imagefolder\Non Demented\941_S_10198__10940178__visit-4_sc__mid.png,Non Demented,Demented,False,0.5196987760451623,0.48030122395483765
+E:\data_lc\processed_imagefolder\Non Demented\941_S_10212__10927935__visit-4_sc__mid.png,Non Demented,Non Demented,True,0.0950864513500721,0.9049135486499279
+E:\data_lc\processed_imagefolder\Non Demented\941_S_10212__11431538__visit-4_m12__mid.png,Non Demented,Demented,False,0.7124689489543492,0.2875310510456508
+E:\data_lc\processed_imagefolder\Non Demented\941_S_6058__11382571__visit-4_m24__mid.png,Non Demented,Demented,False,0.5271947625819824,0.47280523741801755
+E:\data_lc\processed_imagefolder\Non Demented\941_S_7046__11128612__visit-4_init__mid.png,Non Demented,Non Demented,True,0.0057961787998267456,0.9942038212001733
+E:\data_lc\processed_imagefolder\Non Demented\941_S_7046__11128613__visit-4_init__mid.png,Non Demented,Non Demented,True,0.026341187649379205,0.9736588123506208
