@@ -5,3 +5,4 @@
 | ViT Transfer Learning | 0.8992 | 0.8922 | 0.6270 | ViT-B/16 com transfer learning em split por paciente |
 | MONAI 2D ResNet18 | 0.8782 | 0.6552 | 0.7003 | MONAI ResNet18 2D sem pretraining em split por paciente |
 | BiomedCLIP Embeddings | 0.7437 | 0.7241 | 0.5777 | BiomedCLIP congelado + LogisticRegression balanceada |
+| CNN 2.5D ResNet18 | 0.7773 | 0.7974 | 0.6177 | ResNet18 transfer learning com canais de fatias adjacentes |

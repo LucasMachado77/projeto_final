@@ -1,0 +1,19 @@
+{
+  "input_split_csv": "reports_adni\\split_assignments_grouped_binary.csv",
+  "output_dir": "E:\\data_lc\\processed_imagefolder_2p5d_o2",
+  "output_split_csv": "reports_adni\\split_assignments_grouped_binary_2p5d_o2.csv",
+  "manifest_csv": "reports_adni\\prepare_2p5d_full_grouped_binary\\manifest.csv",
+  "slice_offset": 2,
+  "rows_input": 1494,
+  "rows_output": 1494,
+  "failures": 0,
+  "class_counts": {
+    "Non Demented": 1332,
+    "Demented": 162
+  },
+  "split_counts": {
+    "train": 1024,
+    "val": 238,
+    "test": 232
+  }
+}

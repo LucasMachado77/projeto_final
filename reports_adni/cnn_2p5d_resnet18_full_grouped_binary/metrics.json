@@ -1,0 +1,19 @@
+{
+  "device": "cpu",
+  "epochs_planned": 40,
+  "epochs_run": 22,
+  "batch_size": 32,
+  "image_size": 224,
+  "learning_rate": 0.001,
+  "weight_decay": 0.0001,
+  "freeze_backbone": false,
+  "best_by": "val_loss",
+  "best_epoch": 14,
+  "best_val_accuracy": 0.7773109243697479,
+  "best_val_loss": 0.5210370436435988,
+  "early_stopping_patience": 8,
+  "lr_scheduler_patience": 2,
+  "grad_clip_norm": 1.0,
+  "test_accuracy": 0.7974137931034483,
+  "test_loss": 0.617716706004636
+}
