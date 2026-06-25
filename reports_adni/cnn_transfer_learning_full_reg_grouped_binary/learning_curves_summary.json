@@ -1,0 +1,8 @@
+{
+  "rows": 9,
+  "best_val_loss_epoch": 1,
+  "best_val_loss": 0.538162465606417,
+  "best_val_accuracy_epoch": 1,
+  "best_val_accuracy": 0.7983193277310925,
+  "first_overfit_epoch_heuristic": 2
+}

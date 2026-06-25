@@ -1,5 +1,0 @@
-image_path,true_label,predicted_label,output_file
-E:\data_lc\processed_imagefolder\Demented\941_S_10085__11583492__visit-4_m24__mid.png,Demented,Demented,reports_adni\gradcam_grouped_binary\Demented_sample01_pred_Demented.png
-E:\data_lc\processed_imagefolder\Demented\123_S_10776__11285302__visit-4_sc__mid.png,Demented,Demented,reports_adni\gradcam_grouped_binary\Demented_sample02_pred_Demented.png
-E:\data_lc\processed_imagefolder\Non Demented\027_S_10728__11258190__visit-4_sc__mid.png,Non Demented,Demented,reports_adni\gradcam_grouped_binary\Non_Demented_sample01_pred_Demented.png
-E:\data_lc\processed_imagefolder\Non Demented\100_S_10108__10873172__visit-4_sc__mid.png,Non Demented,Demented,reports_adni\gradcam_grouped_binary\Non_Demented_sample02_pred_Demented.png

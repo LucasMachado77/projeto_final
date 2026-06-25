@@ -110,12 +110,12 @@ class SplitImageDataset(Dataset):
     def __len__(self) -> int:
         return len(self.paths)
 
-    def __getitem__(self, index: int) -> tuple[torch.Tensor, Path]:
+    def __getitem__(self, index: int) -> tuple[torch.Tensor, str]:
         image_path = self.paths[index]
         with Image.open(image_path) as image:
             rgb_image = image.convert('RGB')
             tensor = self.transform(rgb_image)
-        return tensor, image_path
+        return tensor, str(image_path)
 
 
 def load_split_dataframe(split_csv: Path) -> pd.DataFrame:

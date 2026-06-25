@@ -1,0 +1,7 @@
+{
+  "val_accuracy": 0.7773109243697479,
+  "test_accuracy": 0.7887931034482759,
+  "train_samples": 1024,
+  "val_samples": 238,
+  "test_samples": 232
+}

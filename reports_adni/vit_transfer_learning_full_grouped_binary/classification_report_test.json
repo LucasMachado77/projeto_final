@@ -1,0 +1,27 @@
+{
+  "Demented": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 25.0
+  },
+  "Non Demented": {
+    "precision": 0.8922413793103449,
+    "recall": 1.0,
+    "f1-score": 0.9430523917995444,
+    "support": 207.0
+  },
+  "accuracy": 0.8922413793103449,
+  "macro avg": {
+    "precision": 0.44612068965517243,
+    "recall": 0.5,
+    "f1-score": 0.4715261958997722,
+    "support": 232.0
+  },
+  "weighted avg": {
+    "precision": 0.7960946789536267,
+    "recall": 0.8922413793103449,
+    "f1-score": 0.8414303668211452,
+    "support": 232.0
+  }
+}

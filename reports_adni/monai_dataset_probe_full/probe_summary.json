@@ -1,0 +1,43 @@
+{
+  "source": "split_csv",
+  "split_csv": "reports_adni\\split_assignments_grouped_binary.csv",
+  "selected_split": "train",
+  "rows_total_csv": 1494,
+  "rows_selected_split": 1024,
+  "rows_existing_selected_split": 1024,
+  "rows_missing_selected_split": 0,
+  "sampled_records": 12,
+  "label_to_id": {
+    "Demented": 0,
+    "Non Demented": 1
+  },
+  "class_counts_selected_split": {
+    "Demented": 113,
+    "Non Demented": 911
+  },
+  "class_counts_existing_selected_split": {
+    "Demented": 113,
+    "Non Demented": 911
+  },
+  "image_size": 224,
+  "batch_size_requested": 4,
+  "monai": {
+    "monai_version": "1.6.0",
+    "torch_version": "2.12.1+cpu",
+    "batch_size": 4,
+    "image_shape": [
+      4,
+      1,
+      224,
+      224
+    ],
+    "image_dtype": "torch.float32",
+    "label_shape": [
+      4
+    ],
+    "label_dtype": "torch.int64",
+    "image_min": 0.0,
+    "image_max": 1.0,
+    "image_mean": 0.22027911245822906
+  }
+}

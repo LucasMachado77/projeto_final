@@ -1,7 +1,0 @@
-{
-  "val_accuracy": 0.5227272727272727,
-  "test_accuracy": 0.45454545454545453,
-  "train_samples": 225,
-  "val_samples": 44,
-  "test_samples": 55
-}

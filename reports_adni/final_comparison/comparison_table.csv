@@ -1,3 +1,0 @@
-model,val_accuracy,test_accuracy,test_loss,notes
-Baseline ML,0.5227272727272727,0.45454545454545453,,LogisticRegression com features simples (grayscale + resize)
-CNN Transfer Learning,0.6363636363636364,0.5818181818181818,0.8709251187064431,ResNet18 com fine-tuning em split por paciente
